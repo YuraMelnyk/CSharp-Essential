@@ -1,0 +1,6 @@
+C:\Users\Melny\Desktop\C_Sharp\Simple_Environment\Simple_Environment\bin\Debug\Simple_Environment.exe.config
+C:\Users\Melny\Desktop\C_Sharp\Simple_Environment\Simple_Environment\bin\Debug\Simple_Environment.exe
+C:\Users\Melny\Desktop\C_Sharp\Simple_Environment\Simple_Environment\bin\Debug\Simple_Environment.pdb
+C:\Users\Melny\Desktop\C_Sharp\Simple_Environment\Simple_Environment\obj\Debug\Simple_Environment.csprojResolveAssemblyReference.cache
+C:\Users\Melny\Desktop\C_Sharp\Simple_Environment\Simple_Environment\obj\Debug\Simple_Environment.exe
+C:\Users\Melny\Desktop\C_Sharp\Simple_Environment\Simple_Environment\obj\Debug\Simple_Environment.pdb
