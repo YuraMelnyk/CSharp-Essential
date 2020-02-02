@@ -18,13 +18,15 @@ namespace ConsoleComparer
         private Stopwatch stopwatch;
 
 
-        public void StraightInsertion(int[] array) 
+        public void StraightInsertion(int[] array1) 
         {
             SortingName = "Straight Insertion";
             ComplexityAlgorithm = "O(n^2)";
             NumberOfCompare = 0;
             NumberOfIteration = 0;
             NumberOfUseShow = 0;
+            int[] array = new int[array1.Length];
+            array1.CopyTo(array, 0);
 
             stopwatch = Stopwatch.StartNew();
 
@@ -53,6 +55,87 @@ namespace ConsoleComparer
             }
             stopwatch.Stop();
             Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
+        }
+
+        public void BubbleSorting(int[] array)
+        {
+            SortingName = "Bubble Sort";
+            ComplexityAlgorithm = "O(n^2)";
+            NumberOfCompare = 0;
+            NumberOfIteration = 0;
+            NumberOfUseShow = 0;
+            int[] a = new int[array.Length];
+            array.CopyTo(a, 0);
+
+            stopwatch = Stopwatch.StartNew();
+
+            for (int i = 0; i < a.Length - 2; i++)
+            {
+                NumberOfIteration++;
+                for (int j = 0; j < a.Length - 1; j++)
+                {
+                    NumberOfIteration++;
+                    if (a[j] > a[j + 1])
+                    {
+                        NumberOfCompare++;
+                        int tmp = a[j];
+                        a[j] = a[j + 1];
+                        a[j + 1] = tmp;
+                    }
+                }
+            }
+
+            stopwatch.Stop();
+            Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
+        }
+
+        public void ShellSorting(int[] array)
+        {
+            SortingName = "Shell Sort";
+            ComplexityAlgorithm = "O(n^2)";
+            NumberOfCompare = 0;
+            NumberOfIteration = 0;
+            NumberOfUseShow = 0;
+            int[] arr = new int[array.Length];
+            array.CopyTo(arr, 0);
+
+            stopwatch = Stopwatch.StartNew();
+
+            for (int i = arr.Length / 2; i > 2; i /= 2)
+            {
+                NumberOfIteration++;
+                for (int j = 0; j < i; j++)
+                {
+                    NumberOfIteration++;
+                    InsSort(arr, j, i);
+                }
+
+            }
+            InsSort(arr, 0, 1);
+
+            stopwatch.Stop();
+            Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
+        }
+
+        private  void InsSort(int[] arr, int start, int incr)
+        {
+            for (int i = start + incr; i < arr.Length; i += incr)
+            {
+                NumberOfIteration++;
+                for (int j = i; (j >= incr) && (arr[j] < arr[j - incr]); j -= incr)
+                {
+                    NumberOfIteration++;
+                    NumberOfCompare += 2;
+                    Swap(ref arr[j], ref arr[j - incr]);
+                }
+            }
+        }
+
+        private  void Swap(ref int v1, ref int v2)
+        {
+            int temp = v1;
+            v1 = v2;
+            v2 = temp;
         }
 
         public void ShowInformation()

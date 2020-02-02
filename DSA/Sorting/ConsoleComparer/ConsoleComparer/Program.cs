@@ -33,11 +33,13 @@ namespace ConsoleComparer
                 switch (choose)
                 {
                     case 1:
-                        ShellSort();
+                        sort.ShellSorting(array);
+                        sort.ShowInformation();
                         stop = 0;
                         break;
                     case 2:
-                        BubbleSort();
+                        sort.BubbleSorting(array);
+                        sort.ShowInformation();
                         stop = 0;
                         break;
                     case 3:
@@ -59,10 +61,7 @@ namespace ConsoleComparer
 
             }
             Console.ReadLine();
-            //switch ()
-            //{
-               
-            //}
+            
         }
 
         private static void QuickSort()
@@ -70,19 +69,5 @@ namespace ConsoleComparer
             Console.WriteLine("Quick");
         }
 
-        private static void InsrtionSort()
-        {
-            Console.WriteLine("Insertion");
-        }
-
-        private static void BubbleSort()
-        {
-            Console.WriteLine("bublle");
-        }
-
-        private static void ShellSort()
-        {
-            Console.WriteLine("Shell");
-        }
     }
 }
