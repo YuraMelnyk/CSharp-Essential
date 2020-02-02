@@ -1,0 +1,4 @@
+1. Show kind of algorithms, with difine numbers.
+2. While(press Enter)
+	choose some algorithms.
+3. Show some spead and performance information about choossen algorithms.
