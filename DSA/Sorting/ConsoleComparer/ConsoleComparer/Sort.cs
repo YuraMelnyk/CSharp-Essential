@@ -17,7 +17,7 @@ namespace ConsoleComparer
         private int Time;
         private Stopwatch stopwatch;
 
-
+        #region StraightInsertion
         public void StraightInsertion(int[] array1) 
         {
             SortingName = "Straight Insertion";
@@ -56,7 +56,9 @@ namespace ConsoleComparer
             stopwatch.Stop();
             Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
         }
+        #endregion
 
+        #region BubbleSorting
         public void BubbleSorting(int[] array)
         {
             SortingName = "Bubble Sort";
@@ -88,7 +90,9 @@ namespace ConsoleComparer
             stopwatch.Stop();
             Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
         }
+        #endregion
 
+        #region ShellSorting
         public void ShellSorting(int[] array)
         {
             SortingName = "Shell Sort";
@@ -130,8 +134,124 @@ namespace ConsoleComparer
                 }
             }
         }
+        #endregion
 
-        private  void Swap(ref int v1, ref int v2)
+        #region HeapSorting
+        public void HeapSorting(int[] array, int n)
+        {
+            SortingName = "Heap Sorting Algorithm";
+            ComplexityAlgorithm = "O(n^2)";
+            NumberOfCompare = 0;
+            NumberOfIteration = 0;
+            NumberOfUseShow = 0;
+            int[] a = new int[array.Length];
+            array.CopyTo(a, 0);
+
+            stopwatch = Stopwatch.StartNew();
+
+            BuildMaxHeap(a, n);
+            for (int i = n - 1; i >= 0; i--)
+            {
+                NumberOfIteration++;
+                Swap(ref a[0], ref a[i]);
+                Heapify(a, 0, i);
+            }
+
+            stopwatch.Stop();
+            Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
+        }
+
+        private  void Heapify(int[] a, int v, int n)
+        {
+            int left = 2 * v + 1;
+            int right = 2 * v + 2;
+            int max = v;
+
+            if ((left < n) && (a[left] > a[max]))
+            {
+                NumberOfCompare += 2;
+                max = left;
+            }
+
+            if ((right < n) && (a[right] > a[max]))
+            {
+                NumberOfCompare += 2;
+                max = right;
+            }
+
+            if (max != v)
+            {
+                NumberOfCompare++;
+                Swap(ref a[v], ref a[max]);
+                Heapify(a, max, n);
+            }
+        }
+        private void BuildMaxHeap(int[] a, int n)
+        {
+            for (int i = n / 2 - 1; i >= 0; i--)
+            {
+                NumberOfIteration++;
+                Heapify(a, i, n);
+            }
+        }
+        #endregion
+
+        #region QuickSort
+        public void QuickSort(int[] array)
+        {
+            SortingName = "Quick Sorting algorithm";
+            ComplexityAlgorithm = "O(n*log(n))";
+            NumberOfCompare = 0;
+            NumberOfIteration = 0;
+            NumberOfUseShow = 0;
+            int[] arr = new int[array.Length];
+            array.CopyTo(arr, 0);
+
+            QuickSorting(arr, 0, arr.Length - 1);
+
+        }
+        private int partition(int[] arr, int low, int high)
+        {
+            int pivot = arr[high];
+
+            int i = (low - 1);
+            for (int j = low; j < high; j++)
+            {
+                NumberOfIteration++;
+                if (arr[j] < pivot)
+                {
+                    NumberOfCompare++;
+                    i++;
+
+                    Swap(ref arr[i], ref arr[j]);
+                }
+            }
+
+            Swap(ref arr[i + 1], ref arr[high]);
+            return i + 1;
+        }
+
+        private void QuickSorting(int[] arr, int low, int high)
+        {          
+            stopwatch = Stopwatch.StartNew();
+
+            if (low < high)
+            {
+                NumberOfCompare++;
+                int partitioningIndex = partition(arr, low, high);
+
+                QuickSorting(arr, low, partitioningIndex - 1);
+                QuickSorting(arr, partitioningIndex + 1, high);
+            }
+
+            stopwatch.Stop();
+            Time = int.Parse(stopwatch.ElapsedMilliseconds.ToString());
+        }
+
+        #endregion
+
+        #region Addition methods
+        private void Swap(ref int v1, ref int v2)
         {
             int temp = v1;
             v1 = v2;
@@ -182,7 +302,7 @@ namespace ConsoleComparer
                 array[i] = double.Parse(rnd.Next(0, count).ToString());
             }
         }
-
+        #endregion
 
 
     }
